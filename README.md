@@ -2,7 +2,7 @@
 
 ## Introduction
 
-I'm an app developer specializing in Flutter and have primarily worked with Firebase for backend services. To challenge myself, I decided to connect my Flutter app to a MySQL database using a Django server. This project involved exposing my localhost through my Wi-Fi IP for access from other devices and using Ngrok for running Google Apps Scripts.
+This Flutter application connects to a MySQL database via a Django server, enabling seamless data management and synchronization with Google Sheets. Users can perform full CRUD operations on both data sources through an intuitive interface. The app supports real-time synchronization, ensuring that any changes made in either the database or Google Sheets are reflected across both platforms. Featuring an initial sync for data reconciliation and a "Last Write Wins" conflict resolution strategy, this project demonstrates effective integration of modern technologies, providing a robust solution for data handling in mobile applications.
 
 ## Working Approach Diagram
 
