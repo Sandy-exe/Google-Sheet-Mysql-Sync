@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheet Sync</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sync Google Sheet with MySQL Database</h1>
+        <p>Click the button below to start syncing the Google Sheet with the database.</p>
+
+        <!-- Sync button -->
+        <form method="POST" action="{% url 'sync_sheet_and_db' %}">
+            {% csrf_token %}
+            <button type="submit" class="button">Sync Now</button>
+        </form>
+
+        <!-- Display status after sync -->
+        {% if missing_in_db is not None and missing_in_sheet is not None %}
+        <div class="status success">
+            <h3>Sync Complete!</h3>
+            <p>Missing records added to database: {{ missing_in_db }}</p>
+            <p>Missing records added to Google Sheets: {{ missing_in_sheet }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
