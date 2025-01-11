@@ -33,11 +33,13 @@ class _MyHomePageState extends State<MyHomePage>
 
   // initPrefs initializes and updates the state of the specified variables, affecting the UI appearance and behavior.
   Future<void> initPrefs() async {
-    await googleSheetService.init();
+    String googleStatus = await googleSheetService.init();
+    String djangoStatus = await djangoApiService.init();
     setState(() {
       isLoadingD = true;
       isLoadingG = true;
     });
+
     List<AnimeModel> djangoTemp = await djangoApiService.fetchAnime();
     List<AnimeModel> gsheetTemp = await googleSheetService.readAnimeRows();
     setState(() {
@@ -48,6 +50,41 @@ class _MyHomePageState extends State<MyHomePage>
       animeListGSheet = gsheetTemp;
       isLoadingG = false;
     });
+
+    if (googleStatus != "Success" || djangoStatus != "Success") {
+      // Show error dialog if any of the statuses is not "Success"
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            
+            title: const Text(
+              'Initialization Error',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            content: const Text(
+                'Error: Check the README file in GitHub to update required details.',
+                style: TextStyle(color: Color.fromARGB(255, 89, 89, 89)),),
+            actions: <Widget>[
+
+               ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black, // Sync button color
+                    foregroundColor: Colors.white, // Sync button text color
+                  ),
+                  child: const Text('OK'),
+                ),
+             
+            ],
+
+            
+          );
+        },
+      );
+    }
   }
 
 
