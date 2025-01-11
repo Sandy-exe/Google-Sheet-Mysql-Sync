@@ -75,6 +75,22 @@ This diagram illustrates the architecture and workflow of the application, showc
 
 [![Watch the video](APP_ScreenShots/thumnail.png)](https://drive.google.com/file/d/1JOpu7G9xfpo97xlIuWla9M5ZJpCCMZiu/preview)
 
+## To Run the Application
+
+Before running the application, make sure to update the following details in the `APP/sheet_base/lib/constants/.constants.dart` file:
+
+1. **baseURL of Django**: Update the `baseUrl` to the correct Django API URL.
+2. **API URL Credentials**: Ensure the API credentials are correctly set.
+3. **Spreadsheet ID**: Update the `spreadsheetId` with the correct ID for your Google Sheets document.
+
+These configurations are essential for the app to work properly with your Django API and Google Sheets integration.
+
+### APK Installation
+
+To install the application on your Android device, use the following APK file:
+
+- **APK File**: Pirate_list.apk
+
 ## Conclusion
 
 It was fun to complete a full end-to-end project in just two days!
